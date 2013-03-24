@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+/*global require */
+(function () {
+  var util = require('util'),
+      LedgerRest = require('../lib/ledger-rest').LedgerRest;
+
+  var args = process.argv.slice(2),
+      file = '';
+
+  while(args.length) {
+    var arg = args.shift();
+
+    switch(arg)
+    {
+      case '-f':
+      case '--file':
+        file = args.shift();;
+        break;
+    }
+  }  
+
+  if (!file) {
+    help();
+  }
+  
+  var server = new LedgerRest({ file: file });
+  
+  server.listen(3000);
+  
+  function help(){
+    util.print([
+      'USAGE: ledger-rest -f /path/to/ledger/journal.dat'
+    , ''
+    , 'Options:'
+    , '  -f, --file FILE    - path to Ledger journal file'
+    , '  -h, --help         - display this help and exit'
+    , ''
+    ].join("\n"));
+
+    process.exit(-1);
+  }
+})();
