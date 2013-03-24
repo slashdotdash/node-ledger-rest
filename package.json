@@ -1,0 +1,34 @@
+{
+  "name": "ledger-rest",
+  "version": "0.0.1",
+  "description": "REST web service API to access ledger cli data.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/slashdotdash/node-ledger-rest.git"
+  },
+  "keywords": [
+    "ledger",
+    "accounting",
+    "finance"
+  ],
+  "author": {
+    "name": "Ben Smith",
+    "email": "ben@10consulting.com"
+  },
+  "license": "MIT",
+  "main": "app.js",
+  "scripts": {
+    "test": ""
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.3.0",
+    "grunt-contrib-watch": "~0.3.1",
+    "jasmine-node": "~1.4.0"
+  },
+  "dependencies": {
+    "restify": "~2.3.4",
+    "lodash": "~1.0.1",
+    "ledger-cli": "0.0.2"
+  }
+}
