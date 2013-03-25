@@ -16,7 +16,13 @@
     "email": "ben@10consulting.com"
   },
   "license": "MIT",
-  "main": "app.js",
+  "bin": {
+    "ledger-rest": "bin/ledger-rest"
+  },
+  "main": "lib/ledger-rest",
+  "directories": {
+    "lib": "lib",
+  },
   "scripts": {
     "test": ""
   },
