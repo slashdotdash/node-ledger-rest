@@ -21,7 +21,7 @@
   },
   "main": "lib/ledger-rest",
   "directories": {
-    "lib": "lib",
+    "lib": "lib"
   },
   "scripts": {
     "test": ""
@@ -35,7 +35,7 @@
   "dependencies": {
     "restify": "~2.3.4",
     "lodash": "~1.0.1",
-    "ledger-cli": "0.0.2",
-    "JSONStream": "~0.6.2"
+    "JSONStream": "~0.6.2",
+    "ledger-cli": "0.0.3"
   }
 }
