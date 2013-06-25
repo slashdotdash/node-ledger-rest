@@ -6,7 +6,9 @@
       LedgerRest = require('../lib/ledger-rest').LedgerRest;
 
   var args = process.argv.slice(2),
-      file = '';
+      verbose = false,
+      file = '',
+      port = '';
 
   while(args.length) {
     var arg = args.shift();
@@ -15,25 +17,37 @@
     {
       case '-f':
       case '--file':
-        file = args.shift();;
+        file = args.shift();
         break;
+        
+      case '-p':
+      case '--port':
+        port = args.shift();
+        break;
+      
+      case '-v':
+      case '--verbose':
+        verbose = true;
+        break;      
     }
   }  
 
-  if (!file) {
+  if (!file || !port) {
     help();
   }
   
-  var server = new LedgerRest({ file: file });
-  
-  server.listen(3000);
+  var server = new LedgerRest({ file: file, debug: verbose });
+
+  server.listen(port);
   
   function help(){
     util.print([
-      'USAGE: ledger-rest -f /path/to/ledger/journal.dat'
+      'USAGE: ledger-rest -p <port> -f /path/to/ledger/journal.dat'
     , ''
     , 'Options:'
+    , '  -p, --port PORT    - port to start the server on'
     , '  -f, --file FILE    - path to Ledger journal file'
+    , '  -v, --verbose      - enable verbose logging to stdout'
     , '  -h, --help         - display this help and exit'
     , ''
     ].join("\n"));

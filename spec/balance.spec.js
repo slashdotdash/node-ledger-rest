@@ -54,10 +54,14 @@ describe('Balance', function() {
     it("should return balance for two accounts", function() {
       expect(balances.length).toBe(2);
     });
-
+    
     it("should parse first balance", function() {
       expect(balances[0]).toEqual({ 
-        total: '£1,000.00', 
+        total : { 
+          currency : '£', 
+          amount : 1000, 
+          formatted : '£1,000.00' 
+        },
         account: { 
           fullname: 'Assets:Checking',
           shortname: 'Assets:Checking',
@@ -68,7 +72,11 @@ describe('Balance', function() {
     
     it("should parse second balance", function() {
       expect(balances[1]).toEqual({ 
-        total: '£-1,000.00', 
+        total : { 
+          currency : '£', 
+          amount : -1000, 
+          formatted : '£-1,000.00' 
+        },
         account: { 
           fullname: 'Income:Salary', 
           shortname: 'Income:Salary',
