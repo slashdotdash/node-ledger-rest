@@ -25,11 +25,11 @@ Install `ledger-rest` and its dependencies with npm.
     
 Use the `LedgerRest` class to create a RESTful server.
 
-    LedgerRest = require('../lib/ledger-rest').LedgerRest;
+    LedgerRest = require('ledger-rest').LedgerRest;
     
     var server = new LedgerRest({ file: 'path/to/ledger/journal/file.dat' });
     server.listen(3000);
     
 Or use the command line runner to start a server listening on the given port and serving a single Ledger `.dat` file.
 
-    ./bin/ledger-rest -p <port> -f path/to/ledger/journal/file.dat
+    ledger-rest -p <port> -f path/to/ledger/journal/file.dat
