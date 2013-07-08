@@ -36,7 +36,7 @@
     help();
   }
   
-  var server = new LedgerRest({ file: file, debug: verbose });
+  var server = new LedgerRest({ file: file, debug: false });
 
   server.listen(port);
   
