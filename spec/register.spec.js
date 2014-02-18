@@ -1,4 +1,6 @@
-var restify = require('restify'),
+var chai = require('chai'),
+    expect = chai.expect,
+    restify = require('restify'),
     LedgerRest = require('../lib/ledger-rest').LedgerRest;
 
 describe('Register', function() {
@@ -29,7 +31,7 @@ describe('Register', function() {
     spec = this;
     
     startServer();
-    createClient();    
+    createClient();
   });
 
   afterEach(function(done) {
@@ -51,8 +53,8 @@ describe('Register', function() {
       });
     });
 
-    it("should return register entries", function() {
-      expect(entries.length).toBe(11);
+    it('should return register entries', function() {
+      expect(entries.length).to.equal(11);
     });
   });
 });

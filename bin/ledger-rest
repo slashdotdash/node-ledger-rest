@@ -1,57 +1,54 @@
 #!/usr/bin/env node
 
-/*global require */
-(function () {
-  var util = require('util'),
-      LedgerRest = require('../lib/ledger-rest').LedgerRest;
+var util = require('util'),
+    LedgerRest = require('../lib/ledger-rest').LedgerRest;
 
-  var args = process.argv.slice(2),
-      verbose = false,
-      file = '',
-      port = '';
+var help = function() {
+  util.print([
+    'USAGE: ledger-rest -p <port> -f /path/to/ledger/journal.dat',
+    '',
+    'Options:',
+    '  -p, --port PORT    - port to start the server on',
+    '  -f, --file FILE    - path to Ledger journal file',
+    '  -v, --verbose      - enable verbose logging to stdout',
+    '  -h, --help         - display this help and exit',
+    ''
+  ].join('\n'));
 
-  while(args.length) {
-    var arg = args.shift();
+  process.exit(-1);
+};
 
-    switch(arg)
-    {
-      case '-f':
-      case '--file':
-        file = args.shift();
-        break;
-        
-      case '-p':
-      case '--port':
-        port = args.shift();
-        break;
-      
-      case '-v':
-      case '--verbose':
-        verbose = true;
-        break;      
-    }
-  }  
+var args = process.argv.slice(2),
+    verbose = false,
+    file = '',
+    port = '';
 
-  if (!file || !port) {
-    help();
-  }
+while(args.length) {
+  var arg = args.shift();
+
+  switch(arg)
+  {
+  case '-f':
+  case '--file':
+    file = args.shift();
+    break;
+    
+  case '-p':
+  case '--port':
+    port = args.shift();
+    break;
   
-  var server = new LedgerRest({ file: file, debug: false });
-
-  server.listen(port);
-  
-  function help(){
-    util.print([
-      'USAGE: ledger-rest -p <port> -f /path/to/ledger/journal.dat'
-    , ''
-    , 'Options:'
-    , '  -p, --port PORT    - port to start the server on'
-    , '  -f, --file FILE    - path to Ledger journal file'
-    , '  -v, --verbose      - enable verbose logging to stdout'
-    , '  -h, --help         - display this help and exit'
-    , ''
-    ].join("\n"));
-
-    process.exit(-1);
+  case '-v':
+  case '--verbose':
+    verbose = true;
+    break;
   }
-})();
+}
+
+if (!file || !port) {
+  help();
+}
+
+var server = new LedgerRest({ file: file, debug: verbose });
+
+server.listen(port);

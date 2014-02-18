@@ -1,4 +1,6 @@
-var restify = require('restify'),
+var chai = require('chai'),
+    expect = chai.expect,
+    restify = require('restify'),
     LedgerRest = require('../lib/ledger-rest').LedgerRest;
 
 describe('Balance', function() {
@@ -29,7 +31,7 @@ describe('Balance', function() {
     spec = this;
     
     startServer();
-    createClient();    
+    createClient();
   });
 
   afterEach(function(done) {
@@ -51,18 +53,18 @@ describe('Balance', function() {
       });
     });
 
-    it("should return balance for two accounts", function() {
-      expect(balances.length).toBe(2);
+    it('should return balance for two accounts', function() {
+      expect(balances.length).to.equal(2);
     });
     
-    it("should parse first balance", function() {
-      expect(balances[0]).toEqual({ 
-        total : { 
-          currency : '£', 
-          amount : 1000, 
-          formatted : '£1,000.00' 
+    it('should parse first balance', function() {
+      expect(balances[0]).to.eql({
+        total: {
+          currency : '£',
+          amount : 1000,
+          formatted : '£1,000.00'
         },
-        account: { 
+        account: {
           fullname: 'Assets:Checking',
           shortname: 'Assets:Checking',
           depth: 2,
@@ -70,18 +72,18 @@ describe('Balance', function() {
       });
     });
     
-    it("should parse second balance", function() {
-      expect(balances[1]).toEqual({ 
-        total : { 
-          currency : '£', 
-          amount : -1000, 
-          formatted : '£-1,000.00' 
+    it('should parse second balance', function() {
+      expect(balances[1]).to.eql({
+        total: {
+          currency : '£',
+          amount : -1000,
+          formatted : '£-1,000.00'
         },
-        account: { 
-          fullname: 'Income:Salary', 
+        account: {
+          fullname: 'Income:Salary',
           shortname: 'Income:Salary',
           depth: 2,
-        } 
+        }
       });
     });
   });
