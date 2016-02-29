@@ -36,3 +36,15 @@ Or use the command line runner to start a server listening on the given port and
 	npm install ledger-rest -g
 	
     ledger-rest -p <port> -f path/to/ledger/journal/file.dat
+    
+To confirm the server is listening:
+
+    curl -H "Content-Type: application/json" http://localhost:<port>/version
+    
+    {"version":"3.1.1-20160111"}
+    
+The following endpoints are available:
+
+* /version
+* /balance
+* /register
