@@ -1,6 +1,6 @@
 {
   "name": "ledger-rest",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "REST web service API to access ledger cli data.",
   "repository": {
     "type": "git",
@@ -24,21 +24,21 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": ""
+    "test": "grunt"
   },
   "devDependencies": {
-    "chai": "~1.9.0",
+    "chai": "~3.5.0",
     "grunt": "~0.4.2",
-    "grunt-contrib-jshint": "~0.8.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-mocha-test": "~0.9.0",
-    "mocha": "~1.17.1"
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-mocha-test": "~0.12.7",
+    "mocha": "~2.4.5"
   },
   "dependencies": {
-    "JSONStream": "~0.8.0",
+    "JSONStream": "~1.0.7",
     "ledger-cli": "0.2.0",
-    "lodash": "~2.4.1",
-    "restify": "~2.6.1"
+    "lodash": "~4.5.1",
+    "restify": "~4.0.4"
   },
   "readmeFilename": "README.md"
 }
