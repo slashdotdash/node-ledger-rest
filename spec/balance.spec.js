@@ -1,21 +1,21 @@
 var chai = require('chai'),
     expect = chai.expect,
-    restify = require('restify'),
+    restify = require('restify-clients'),
     LedgerRest = require('../lib/ledger-rest').LedgerRest;
 
 describe('Balance', function() {
   var spec, server, client;
-  
+
   // start ledger-rest server
   function startServer() {
     server = new LedgerRest({ file: 'spec/data/single-transaction.dat' });
     server.listen(3000);
   }
-  
+
   function stopServer(done) {
     server.close(done);
   }
-  
+
   // create JSON client
   function createClient() {
     client = restify.createJsonClient({
@@ -26,10 +26,10 @@ describe('Balance', function() {
       }
     });
   }
-  
+
   beforeEach(function() {
     spec = this;
-    
+
     startServer();
     createClient();
   });
@@ -37,10 +37,10 @@ describe('Balance', function() {
   afterEach(function(done) {
     stopServer(done);
   });
-  
+
   describe('single transaction', function() {
     var balances;
-    
+
     beforeEach(function(done) {
       client.get('/balance', function(err, req, res, obj) {
         if (err) {
@@ -56,7 +56,7 @@ describe('Balance', function() {
     it('should return balance for two accounts', function() {
       expect(balances.length).to.equal(2);
     });
-    
+
     it('should parse first balance', function() {
       expect(balances[0]).to.eql({
         total: {
@@ -71,7 +71,7 @@ describe('Balance', function() {
         }
       });
     });
-    
+
     it('should parse second balance', function() {
       expect(balances[1]).to.eql({
         total: {
