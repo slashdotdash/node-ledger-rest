@@ -1,21 +1,21 @@
 var chai = require('chai'),
     expect = chai.expect,
-    restify = require('restify'),
+    restify = require('restify-clients'),
     LedgerRest = require('../lib/ledger-rest').LedgerRest;
 
 describe('Register', function() {
   var spec, server, client;
-  
+
   // start ledger-rest server
   function startServer() {
     server = new LedgerRest({ file: 'spec/data/drewr.dat' });
     server.listen(3000);
   }
-  
+
   function stopServer(done) {
     server.close(done);
   }
-  
+
   // create JSON client
   function createClient() {
     client = restify.createJsonClient({
@@ -26,10 +26,10 @@ describe('Register', function() {
       }
     });
   }
-  
+
   beforeEach(function() {
     spec = this;
-    
+
     startServer();
     createClient();
   });
@@ -37,10 +37,10 @@ describe('Register', function() {
   afterEach(function(done) {
     stopServer(done);
   });
-  
+
   describe('multiple transactions', function() {
     var entries;
-    
+
     beforeEach(function(done) {
       client.get('/register', function(err, req, res, obj) {
         if (err) {
